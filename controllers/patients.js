@@ -1,3 +1,6 @@
+const patient = require('../models/Patient');
+
+
 //  @desc   Get all patients
 //  @route  Get /api/v1/patients
 //  @access Public for now
@@ -22,6 +25,7 @@ exports.getPatient = (req, res, next) => {
 //  @access Private
 
 exports.createPatient = (req, res, next) => {
+  console.log(req.body);
   res
   .status(200)
   .json({ success: true, msg: "Create new patient"});
