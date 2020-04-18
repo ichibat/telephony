@@ -26,12 +26,10 @@ const PatientSchema = new mongoose.Schema({
     required: [true, '生年月日を19660221の形式で入力してください．'],
     maxlength: [8, '長すぎます．']
   },
-  disease: {
-    type: String,
-    required: [true, '病名を入力してください．'],
-    unique: false,
-    trim: true,
-    maxlength: [24, '病名が長すぎます．']
+  telephone: {
+    type: Number,
+    required: [true, '電話番号をハイフン無しで入力してください．'],
+    maxlength: [11, '長すぎます．']
   },
   address: {
     type: String,
@@ -40,10 +38,12 @@ const PatientSchema = new mongoose.Schema({
     trim: true,
     maxlength: [100, '住所が長すぎます．']
   },
-  telephone: {
-    type: Number,
-    required: [true, '電話番号をハイフン無しで入力してください．'],
-    maxlength: [11, '長すぎます．']
+  disease: {
+    type: String,
+    required: [true, '病名を入力してください．'],
+    unique: false,
+    trim: true,
+    maxlength: [24, '病名が長すぎます．']
   },
   diseaseHistory: {
     type: String,
@@ -75,13 +75,15 @@ const PatientSchema = new mongoose.Schema({
   },
   primaryPh: {
     type: String,
-    required: [true, '訪問看護ステーションを入力してください．ない場合は,なしと入力してください．'],
+    required: [true, '薬局を入力してください．ない場合は,なしと入力してください．'],
     unique: false,
     trim: true,
     maxlength: [50, '名前が長すぎます．']
   },
   createdAt: {
     type: Date,
-    dafault: Date.now
+    default: Date.now
   }
 })
+
+module.exports = mongoose.model('Patient', PatientSchema);
