@@ -8,7 +8,7 @@ const Patient = require('../models/Patient');
 exports.getPatients = async(req, res, next) => {
   try {
     const patients = await Patient.find();
-    res.status(200).json({ success: true, data: patients });
+    res.status(200).json({ success: true, count: patients.length, data: patients });
   } catch (err) {
     res.status(400).json({ success: false});
   }
@@ -61,18 +61,38 @@ exports.createPatient = async (req, res, next) => {
 //  @route  PUT /api/v1/patients/:id
 //  @access Private
 
-exports.updatePatient = (req, res, next) => {
-  res
-  .status(200)
-  .json({ success: true, msg: `Update patient ${req.params.id}`});
-}
+exports.updatePatient = async (req, res, next) => {
+  try {
+    const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, 
+      runValidataors: true
+    });
+    if(!patient) {
+      return res.status(400).json({ success: false });
+    }
+    res.status(200).json({ success: true, data: patient });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
+  };
+
 
 //  @desc   Delete single patient
 //  @route  DELETE /api/v1/patients/:id
 //  @access Private
 
-exports.deletePatient = (req, res, next) => {
-  res
-  .status(200)
-  .json({ success: true, msg: `Delete patient ${req.params.id}`});
+exports.deletePatient = async (req, res, next) => {
+  try {
+    const patient = await Patient.findByIdAndDelete(req.params.id);
+    if(!patient) {
+      return res.status(400).json({ success: false });
+    }
+    res.status(200).json({ success: true, data: {patient} });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
 }
