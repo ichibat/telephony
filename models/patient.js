@@ -79,7 +79,7 @@ const PatientSchema = new mongoose.Schema({
     unique: false,
     trim: true,
     maxlength: [50, '名前が長すぎます．']
-  }
+  },
   createdAt: {
     type: Date,
     dafault: Date.now
