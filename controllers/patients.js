@@ -8,9 +8,19 @@ const asyncHandler = require('../middleware/async');
 //  @access Public for now
 
 exports.getPatients = asyncHandler(async(req, res, next) => {
-  
-    const patients = await Patient.find();
+    let query;
+     
+    let queryStr = JSON.stringify(req.query);
+
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+    query = Patient.find(JSON.parse(queryStr));
+    
+    const patients = await query;
+
     res.status(200).json({ success: true, count: patients.length, data: patients });
+
+    console.log(queryStr);
   
   });
 

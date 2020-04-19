@@ -11,10 +11,9 @@
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護石神井",
     "primaryNs": "訪問看護ステーション石神井",
-    "primaryPh": "駅前薬局",
-
-
-  
+    "primaryPh": "駅前薬局"
+  },
+  {
     "karteNo": "22",
     "ptLastName": "樋口",
     "ptFirstName": "一葉",
@@ -26,37 +25,34 @@
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護支援事業所練馬",
     "primaryNs": "訪問看護ステーションひだまり",
-    "primaryPh": "すみれ薬局",
-
-
+    "primaryPh": "すみれ薬局"
+  },
+  {
     "karteNo": "102",
     "ptLastName": "西山",
     "ptFirstName": "広忠",
     "birthday": "19710111",
+    "telephone": "09022321234",    
     "address": "東京都杉並区西荻2−2−5",
     "disease": "糖尿病　便秘症",
     "diseaseHistory": "これまで近医を受診していたが，通院困難により2020-04-16より当院で訪問診療中．奥様と二人暮し",
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護支援事業所大泉学園",
     "primaryNs": "訪問看護ステーション優作",
-    "primaryPh": "ゆり薬局",
-    
-
-
+    "primaryPh": "ゆり薬局"
+  }, 
+  {
     "karteNo": "112",
     "ptLastName": "所",
     "ptFirstName": "由紀恵",
     "birthday": "19730101",
+    "telephone": "0373321099", 
     "address": "東京都世田谷区成城4−2−5−303",
     "disease": "乳がん肺転移",
     "diseaseHistory": "乳がんで化学療法中だったがBSCの方針となり，2019年12月18日より当院で訪問診療中．",
     "primaryDr": "大西武志",
     "primaryCM": "居宅介護支援事業所成城",
     "primaryNs": "訪問看護ステーションわかまつ",
-    "primaryPh": "なし",
-
-
-
-
+    "primaryPh": "なし"
   }
 ]
