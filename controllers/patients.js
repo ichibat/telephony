@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Patient = require('../models/Patient');
 
 
@@ -24,14 +25,15 @@ exports.getPatient = async (req, res, next) => {
     const patient = await Patient.findById(req.params.id);
 
     if(!patient) {
-      return res.status(400).json({ success: false });
+      // return res.status(400).json({ success: false });
+      return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
     }
 
     res.status(200).json({ success: true, data: patient });
   } catch (err) {
-    res.status(400).json({ success: false });
+    // res.status(400).json({ success: false });
+    next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
   }
-
 }
 
 //  @desc   Create new patient
