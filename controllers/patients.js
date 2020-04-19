@@ -11,7 +11,8 @@ exports.getPatients = async(req, res, next) => {
     const patients = await Patient.find();
     res.status(200).json({ success: true, count: patients.length, data: patients });
   } catch (err) {
-    res.status(400).json({ success: false});
+    // res.status(400).json({ success: false});
+    next(err);
   }
 
 }
@@ -32,7 +33,8 @@ exports.getPatient = async (req, res, next) => {
     res.status(200).json({ success: true, data: patient });
   } catch (err) {
     // res.status(400).json({ success: false });
-    next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
+    // next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
+    next(err);
   }
 }
 
@@ -50,9 +52,11 @@ exports.createPatient = async (req, res, next) => {
     });
     
   } catch (err) {
-    res.status(400).json({
-      success: false
-    });
+    // res.status(400).json({
+    //   success: false
+    // });
+    next(err);
+
   }
 
 
@@ -70,13 +74,16 @@ exports.updatePatient = async (req, res, next) => {
       runValidataors: true
     });
     if(!patient) {
-      return res.status(400).json({ success: false });
+      return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
+
     }
     res.status(200).json({ success: true, data: patient });
   } catch (err) {
-    res.status(400).json({
-      success: false
-    });
+    // res.status(400).json({
+    //   success: false
+    // });
+    next(err);
+
   }
   };
 
@@ -89,12 +96,15 @@ exports.deletePatient = async (req, res, next) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);
     if(!patient) {
-      return res.status(400).json({ success: false });
+      return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
+
     }
     res.status(200).json({ success: true, data: {patient} });
   } catch (err) {
-    res.status(400).json({
-      success: false
-    });
+    // res.status(400).json({
+    //   success: false
+    // });
+    next(err);
+
   }
 }
