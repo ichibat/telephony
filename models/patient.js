@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
+
 
 const PatientSchema = new mongoose.Schema({
+  primaryDr: {
+    type: String,
+    required: [true, '主治医名を入力してください．不明，未定の場合は，なしと入力してください．'],
+    unique: false,
+    trim: true,
+    maxlength: [24, '名前が長すぎます．']
+  },
   karteNo: {
     type: Number,
     required: [true, 'カルテ番号を入力してください．'],
@@ -52,12 +61,11 @@ const PatientSchema = new mongoose.Schema({
     trim: true,
     maxlength: [300, '病歴が長すぎます．']
   },
-  primaryDr: {
+  slug: String,
+  description: {
     type: String,
-    required: [true, '主治医名を入力してください．不明，未定の場合は，なしと入力してください．'],
-    unique: false,
-    trim: true,
-    maxlength: [24, '名前が長すぎます．']
+    required: [false, 'Please add a description'],
+    maxlength: [500, 'Descrption can not be more than 500 characters']
   },
   primaryCM: {
     type: String,
@@ -84,6 +92,12 @@ const PatientSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+})
+
+// Create patient slug from the name
+PatientSchema.pre('save', function(next) {
+  this.slug = slugify(this.ptLastName, { lower: true});
+  next();
 })
 
 module.exports = mongoose.model('Patient', PatientSchema);
