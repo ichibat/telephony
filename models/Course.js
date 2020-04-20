@@ -8,6 +8,16 @@ const CourseSchema = new mongoose.Schema({
     required: [true, '発症時の重症度を入力してください．'],
     enum: ['軽症','中等症','重症','不明']
   },
+  onsetAt: {
+    type: Date,
+    min: '2019-01-01',
+    max: '2029-01-01'
+  },
+  testedAt: {
+    type: Date,
+    min: '2019-01-01',
+    max: '2029-01-01'
+  },
   currentFluHistory: {
     type: String,
     required: [true, '今回の風邪症状の病歴を入力してください．不明の場合は，なしと入力してください．'],

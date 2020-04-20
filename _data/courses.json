@@ -1,21 +1,29 @@
 [
   {
     "severityAtFirst": "軽症",
+    "onsetAt": "2020-01-12",
+    "testedAt": "2020-01-20",
     "currentFluHistory": "中国勤務3年，1月初めに帰国．",
     "patient": "5e9c331a9bfdd88162eec0ac"
   },
   {
     "severityAtFirst": "重症",
+    "onsetAt": "2020-03-03",
+    "testedAt": "2020-03-11",
     "currentFluHistory": "海外渡航歴なし．濃厚接触の疑い",
     "patient": "5e9c331a9bfdd88162eec0ad"
   },
   {
     "severityAtFirst": "中等症",
+    "onsetAt": "2020-02-03",
+    "testedAt": "2020-02-21",
     "currentFluHistory": "病院勤務．院内感染疑い．",
     "patient": "5e9c331a9bfdd88162eec0ae"
   },
   {
     "severityAtFirst": "不明",
+    "onsetAt": "2020-02-14",
+    "testedAt": "2020-02-18",
     "currentFluHistory": "市中感染の疑い．スナックか．",
     "patient": "5e9c331a9bfdd88162eec0af"
   }
