@@ -1,5 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const Course = require('../models/Course');
+const Patient = require('../models/Patient');
 const asyncHandler = require('../middleware/async');
 
 //  @desc   Get courses
@@ -25,5 +26,50 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
     success: true,
     count: courses.length,
     datå: courses
+  });
+})
+
+//  @desc   Get single courses
+//  @route  Get /api/v1/courses/:id
+//  @access Public for now
+
+exports.getCourse = asyncHandler(async (req, res, next) => {
+  const course = await Course.findById(req.params.id).populate({
+    path: 'patient',
+    select: 'karteNo PtLastName PtFirstName'
+  });
+
+  if(!course) {
+    return next(new ErrorResponse(`No course with the id of ${req.params.id}`),
+    404
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    datå: course
+  });
+})
+
+//  @desc   Add a course
+//  @route  POST /api/v1/patient/:id/courses
+//  @access Private
+
+exports.addCourse = asyncHandler(async (req, res, next) => {
+  req.body.patient = req.params.patientId;
+
+  const patient = await Patient.findById(req.params.patientId);
+
+  if(!patient) {
+    return next(new ErrorResponse(`No patient with the id of ${req.params.patientId}`),
+    404
+    );
+  }
+
+  const course = await Course.create(req.body);
+
+  res.status(200).json({
+    success: true,
+    datå: course
   });
 })
