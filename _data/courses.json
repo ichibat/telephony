@@ -1,17 +1,21 @@
 [
   {
+    "severityAtFirst": "軽症",
     "currentFluHistory": "中国勤務3年，1月初めに帰国．",
     "patient": "5e9c331a9bfdd88162eec0ac"
   },
   {
+    "severityAtFirst": "重症",
     "currentFluHistory": "海外渡航歴なし．濃厚接触の疑い",
     "patient": "5e9c331a9bfdd88162eec0ad"
   },
   {
+    "severityAtFirst": "中等症",
     "currentFluHistory": "病院勤務．院内感染疑い．",
     "patient": "5e9c331a9bfdd88162eec0ae"
   },
   {
+    "severityAtFirst": "不明",
     "currentFluHistory": "市中感染の疑い．スナックか．",
     "patient": "5e9c331a9bfdd88162eec0af"
   }
