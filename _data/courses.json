@@ -4,6 +4,8 @@
     "onsetAt": "2020-01-12",
     "testedAt": "2020-01-20",
     "currentFluHistory": "中国勤務3年，1月初めに帰国．",
+    "hospitalization": false,
+    "outcome": "生存",
     "patient": "5e9c331a9bfdd88162eec0ac"
   },
   {
@@ -11,6 +13,8 @@
     "onsetAt": "2020-03-03",
     "testedAt": "2020-03-11",
     "currentFluHistory": "海外渡航歴なし．濃厚接触の疑い",
+    "hospitalization": true,
+    "outcome": "死亡",
     "patient": "5e9c331a9bfdd88162eec0ad"
   },
   {
@@ -18,6 +22,8 @@
     "onsetAt": "2020-02-03",
     "testedAt": "2020-02-21",
     "currentFluHistory": "病院勤務．院内感染疑い．",
+    "hospitalization": false,
+    "outcome": "生存",
     "patient": "5e9c331a9bfdd88162eec0ae"
   },
   {
@@ -25,6 +31,8 @@
     "onsetAt": "2020-02-14",
     "testedAt": "2020-02-18",
     "currentFluHistory": "市中感染の疑い．スナックか．",
+    "hospitalization": false,
+    "outcome": "不明",
     "patient": "5e9c331a9bfdd88162eec0af"
   }
 ]

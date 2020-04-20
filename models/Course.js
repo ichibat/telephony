@@ -25,6 +25,15 @@ const CourseSchema = new mongoose.Schema({
     trim: true,
     maxlength: [300, '病歴が長すぎます．']
   },
+  hospitalization: {
+    type: Boolean,
+    required: [false, '経過中入院したかを入力してください．']
+  },
+  outcome: {
+    type: String,
+    required: [true, '症例の転帰を入力してください．'],
+    enum: ['生存','死亡','不明']
+  },
   createdAt: {
     type: Date,
     default: Date.now
