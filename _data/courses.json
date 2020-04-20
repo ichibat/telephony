@@ -1,47 +1,11 @@
 [
   {
     "severity": "軽症",
-    "auditAt": "2020-01-12",
-    "testedAt": "2020-01-20",
-    "currentFluHistory": "中国勤務3年，1月初めに帰国．",
+    "auditAt": "2020-02-22",
+    "testedAt": "2020-02-22",
+    "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9c331a9bfdd88162eec0ac"
-  },
-  {
-    "severity": "重症",
-    "auditAt": "2020-03-03",
-    "testedAt": "2020-03-11",
-    "currentFluHistory": "海外渡航歴なし．濃厚接触の疑い",
-    "hospitalization": true,
-    "outcome": "死亡",
-    "patient": "5e9c331a9bfdd88162eec0ad"
-  },
-  {
-    "severity": "中等症",
-    "auditAt": "2020-02-03",
-    "testedAt": "2020-02-21",
-    "currentFluHistory": "病院勤務．院内感染疑い．",
-    "hospitalization": false,
-    "outcome": "生存",
-    "patient": "5e9c331a9bfdd88162eec0ae"
-  },
-  {
-    "severity": "不明",
-    "auditAt": "2020-02-14",
-    "testedAt": "2020-02-18",
-    "currentFluHistory": "市中感染の疑い．スナックか．",
-    "hospitalization": false,
-    "outcome": "不明",
-    "patient": "5e9c331a9bfdd88162eec0af"
-  },
-  {
-    "severity": "軽症",
-    "auditAt": "2020-02-02",
-    "testedAt": "2020-01-20",
-    "currentFluHistory": "重症化はしないが，風邪症状は続いている．",
-    "hospitalization": false,
-    "outcome": "生存",
-    "patient": "5e9c331a9bfdd88162eec0ac"
+    "patient": "5e9d8b5de800d5ceed732ffd"
   }
 ]

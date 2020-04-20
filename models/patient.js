@@ -92,13 +92,33 @@ const PatientSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 })
 
 // Create patient slug from the name
 PatientSchema.pre('save', function(next) {
   this.slug = slugify(this.ptLastName, { lower: true});
   next();
+});
+
+
+// Cascade delete courses when a patient is deleted
+PatientSchema.pre('remove', async function (next) {
+  console.log("Courses being removed from this patient");
+  await this.model('Course').deleteMany({ patient: this._id });
+  next();
 })
+
+
+// Reverse populate with virtuals
+PatientSchema.virtual('courses', {
+  ref: 'Course',
+  localField: '_id',
+  foreignField: 'patient',
+  justOne: false
+});
 
 
 module.exports = mongoose.model('Patient', PatientSchema);

@@ -26,7 +26,7 @@ exports.getPatients = asyncHandler(async(req, res, next) => {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
 
     // Finding resourse
-    query = Patient.find(JSON.parse(queryStr));
+    query = Patient.find(JSON.parse(queryStr)).populate('courses');
 
     // Select Fields
     if(req.query.select) {
@@ -128,11 +128,14 @@ exports.updatePatient = asyncHandler(async (req, res, next) => {
 //  @access Private
 
 exports.deletePatient = asyncHandler(async (req, res, next) => {
-    const patient = await Patient.findByIdAndDelete(req.params.id);
+    const patient = await Patient.findById(req.params.id);
     if(!patient) {
       return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
 
     }
-    res.status(200).json({ success: true, data: {patient} });
+
+    patient.remove();
+
+    res.status(200).json({ success: true, data: {} });
   
 });

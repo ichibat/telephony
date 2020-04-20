@@ -13,7 +13,10 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
   if(req.params.patientId) {
     query = Course.find({patient: req.params.patientId});
   } else {
-    query = Course.find();
+    query = Course.find().populate({
+      path: 'patient',
+      select: 'karteNo ptLastName ptFirstName'
+    });
   }
 
   const courses = await query;
