@@ -7,7 +7,14 @@ const {
   deletePatient
 } = require('../controllers/patients');
 
+
+// Include other resource routers
+const courseRouter = require('./courses');
+
 const router = express.Router(); 
+
+// Re-route into other resource routers
+router.use('/:patientId/courses', courseRouter);
 
 router
   .route('/')

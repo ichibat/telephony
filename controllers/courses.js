@@ -7,7 +7,7 @@ const asyncHandler = require('../middleware/async');
 //  @route  Get /api/v1/patients/:patientId/courses
 //  @access Public for now
 
-exports.getCourses = asyncHandler(async (req, res,next) => {
+exports.getCourses = asyncHandler(async (req, res, next) => {
   let query;
 
   if(req.params.patientId) {
