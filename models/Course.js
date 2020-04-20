@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 
 const CourseSchema = new mongoose.Schema({
 
-  severityAtFirst: {
+  severity: {
     type: String,
     required: [true, '発症時の重症度を入力してください．'],
     enum: ['軽症','中等症','重症','不明']
   },
-  onsetAt: {
+  auditAt: {
     type: Date,
     min: '2019-01-01',
     max: '2029-01-01'
