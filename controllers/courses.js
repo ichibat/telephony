@@ -81,7 +81,7 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
 
 exports.updateCourse = asyncHandler(async (req, res, next) => {
 
-  let course = await Courese.findById(req.params.id);
+  let course = await Course.findById(req.params.id);
 
   if(!course) {
     return next(new ErrorResponse(`No course with the id of ${req.params.id}`),
