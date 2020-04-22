@@ -139,3 +139,21 @@ exports.deletePatient = asyncHandler(async (req, res, next) => {
     res.status(200).json({ success: true, data: {} });
   
 });
+
+
+//  @desc   Upload photo for patient
+//  @route  PUT /api/v1/patients/:id/photo
+//  @access Private
+
+exports.patientPhotoUpload = asyncHandler(async (req, res, next) => {
+  const patient = await Patient.findById(req.params.id);
+  if(!patient) {
+    return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
+
+  }
+
+  if(!req.files) {
+    return next(new ErrorResponse(`ファイルをアップロードして下さい．`,400));
+  }
+
+});

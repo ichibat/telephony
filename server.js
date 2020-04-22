@@ -2,9 +2,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
+const fileupload = require('express-fileupload');
+const helmet = require('helmet');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
-const helmet = require('helmet');
+
 
 // Load env vars
 dotenv.config({ path: './config/config.env'});
@@ -29,12 +31,17 @@ if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Mount file uploader 
+app.use(fileupload());
+
 // Mount routers
 app.use('/api/v1/patients', patients);
 app.use('/api/v1/courses', courses);
 
 // Mount errorHandler
 app.use(errorHandler);
+
+
 
 
 // Set security headers

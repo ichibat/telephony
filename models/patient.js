@@ -88,6 +88,10 @@ const PatientSchema = new mongoose.Schema({
     trim: true,
     maxlength: [50, '名前が長すぎます．']
   },
+  photo: {
+    type: String,
+    default: 'no-photo.jpg'
+  },
   createdAt: {
     type: Date,
     default: Date.now
