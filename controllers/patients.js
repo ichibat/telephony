@@ -156,4 +156,11 @@ exports.patientPhotoUpload = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`ファイルをアップロードして下さい．`,400));
   }
 
+  console.log('req.files.file');
+
+  // Make sure the image is a photo
+  if(!file.minetype.startsWith('image')) {
+    return next(new ErrorResponse(`写真の形式のファイルアップロードして下さい．`,400));
+  } 
+
 });
