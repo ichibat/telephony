@@ -1,3 +1,4 @@
+const path = require('path');
 const ErrorResponse = require('../utils/errorResponse');
 const Patient = require('../models/Patient');
 const asyncHandler = require('../middleware/async');
@@ -156,11 +157,33 @@ exports.patientPhotoUpload = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`ファイルをアップロードして下さい．`,400));
   }
 
-  console.log('req.files.file');
+  const file = req.files.file;
 
   // Make sure the image is a photo
-  if(!file.minetype.startsWith('image')) {
-    return next(new ErrorResponse(`写真の形式のファイルアップロードして下さい．`,400));
+  if(!file.mimetype.startsWith('image')) {
+    return next(new ErrorResponse(`画像の形式のファイルをアップロードして下さい．`,400));
   } 
 
+  // Check filesize
+  if(file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(new ErrorResponse(`ファイルサイズが${process.env.MAX_FILE_UPLOAD}以下のファイルをアップロードして下さい．`,400));
+  }
+
+  // Create custom filename
+  file.name = `photo_${patient._id}${path.parse(file.name).ext} `;
+
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
+    if(err) {
+      console.error(err);
+      return next(new ErrorResponse(`ファイルのアップロードエラーです．`,500));
+    }
+
+    await Patient.findByIdAndUpdate(req.params.id, { photo: file.name });
+
+    res.status(200).json({
+      success: true,
+      data: file.name
+    });
+
+  });
 });
