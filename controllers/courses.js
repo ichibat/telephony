@@ -9,25 +9,18 @@ const asyncHandler = require('../middleware/async');
 //  @access Public for now
 
 exports.getCourses = asyncHandler(async (req, res, next) => {
-  let query;
-
   if(req.params.patientId) {
-    query = Course.find({patient: req.params.patientId});
-  } else {
-    query = Course.find().populate({
-      path: 'patient',
-      select: 'karteNo ptLastName ptFirstName'
+    const courses = await Course.find({patient: req.params.patientId});
+    return res.status(200).json({
+      success: true,
+      count: courses.length,
+      data: courses
     });
+  } else {
+    res.status(200).json(res.advancedResults);
+    // res.status(200).json({ "success": true});
   }
-
-  const courses = await query;
-
-  res.status(200).json({
-    success: true,
-    count: courses.length,
-    datå: courses
-  });
-})
+});
 
 //  @desc   Get single courses
 //  @route  Get /api/v1/courses/:id

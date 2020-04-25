@@ -8,6 +8,9 @@ const {
   patientPhotoUpload
 } = require('../controllers/patients');
 
+const Patient = require('../models/Patient');
+const advancedResults = require('../middleware/advancedResults');
+
 
 // Include other resource routers
 const courseRouter = require('./courses');
@@ -21,7 +24,7 @@ router.route('/:id/photo').put(patientPhotoUpload);
 
 router
   .route('/')
-  .get(getPatients)
+  .get(advancedResults(Patient, 'courses'), getPatients)
   .post(createPatient);
 
 router.route('/:id')
