@@ -17,19 +17,23 @@ const courseRouter = require('./courses');
 
 const router = express.Router(); 
 
+const { protect } = require('../middleware/auth');
+
+
+
 // Re-route into other resource routers
 router.use('/:patientId/courses', courseRouter);
 
-router.route('/:id/photo').put(patientPhotoUpload);
+router.route('/:id/photo').put(protect, patientPhotoUpload);
 
 router
   .route('/')
   .get(advancedResults(Patient, 'courses'), getPatients)
-  .post(createPatient);
+  .post(protect, createPatient);
 
 router.route('/:id')
   .get(getPatient)
-  .put(updatePatient)
-  .delete(deletePatient);
+  .put(protect, updatePatient)
+  .delete(protect, deletePatient);
 
 module.exports = router;
