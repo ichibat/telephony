@@ -7,5 +7,86 @@
     "hospitalization": false,
     "outcome": "生存",
     "patient": "5e9d8b5de800d5ceed732ffd"
+  },
+  {
+    "severity": "重症",
+    "auditAt": "2020-03-13",
+    "testedAt": "2020-03-21",
+    "currentFluHistory": "ハンバーガーショップでの感染が考えられる．",
+    "hospitalization": true,
+    "outcome": "死亡",
+    "patient": "5e9d317acc5995c4c58c4607"
+  },
+  {
+    "severity": "中等症",
+    "auditAt": "2020-03-03",
+    "testedAt": "2020-03-11",
+    "currentFluHistory": "薬局勤務．経路不明",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d317acc5995c4c58c4609"
+  },
+  {
+    "severity": "不明",
+    "auditAt": "2020-03-14",
+    "testedAt": "2020-03-18",
+    "currentFluHistory": "家族も感染．家族内感染．",
+    "hospitalization": false,
+    "outcome": "不明",
+    "patient": "5e9d317acc5995c4c58c4607"
+  },
+  {
+    "severity": "軽症",
+    "auditAt": "2020-01-12",
+    "testedAt": "2020-01-20",
+    "currentFluHistory": "中国勤務3年，1月初めに帰国．",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d729c6a0716cb798e51a1"
+  },
+  {
+    "severity": "中等症",
+    "auditAt": "2020-02-03",
+    "testedAt": "2020-02-21",
+    "currentFluHistory": "病院勤務．院内感染疑い．",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d317acc5995c4c58c4607"
+  },
+  {
+    "severity": "不明",
+    "auditAt": "2020-02-14",
+    "testedAt": "2020-02-18",
+    "currentFluHistory": "市中感染の疑い．スナックか．",
+    "hospitalization": false,
+    "outcome": "不明",
+    "patient": "5e9d317acc5995c4c58c4609"
+  },
+  {
+    "severity": "軽症",
+    "auditAt": "2020-02-02",
+    "testedAt": "2020-01-20",
+    "currentFluHistory": "重症化はしないが，風邪症状は続いている．",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d729c6a0716cb798e51a1"
+  },
+  {
+    "severity": "軽症",
+    "auditAt": "2020-02-22",
+    "testedAt": "2020-02-22",
+    "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d8b5de800d5ceed732ffd"
+  },
+  {
+    "severity": "中等症",
+    "auditAt": "2020-02-24",
+    "testedAt": "2020-02-28",
+    "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
+    "hospitalization": false,
+    "outcome": "生存",
+    "patient": "5e9d317acc5995c4c58c4607"
   }
 ]

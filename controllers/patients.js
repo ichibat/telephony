@@ -33,6 +33,17 @@ exports.getPatient = asyncHandler(async (req, res, next) => {
 //  @access Private
 
 exports.createPatient = asyncHandler(async (req, res, next) => {
+  // Add user to req.body
+    req.body.user = req.user.id;
+
+  // Check for published patient
+    const publishedpatient = await Patient.findOne({ user: req.user.id });
+
+  // If the user is not an adminm they can only add one patient
+    if(publishedpatient && req.user.role !== 'admin') {
+      return next(new ErrorResponse(`このユーザーID:${req.user.id}はすでに患者さんを登録しています．`, 400));
+    }
+    
 
     const patient = await Patient.create(req.body);
 
