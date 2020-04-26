@@ -34,3 +34,13 @@ exports.protect = asyncHandler(async (req, res, next) => {
   return next(new ErrorResponse('この機能にはアクセスできません．', 401));
   }
 });
+
+// Grant access to specific roles
+exports.authorize = (...roles) => {
+  return(req, res, next) => {
+    if(!roles.includes(req.user.role)) {
+      return next(new ErrorResponse(`あなたのユーザー権限 ${req.user.role} ではこの機能にはアクセスできません．`, 403));
+    }
+  next();
+  }
+}
