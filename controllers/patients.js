@@ -56,14 +56,18 @@ exports.createPatient = asyncHandler(async (req, res, next) => {
 
 exports.updatePatient = asyncHandler(async (req, res, next) => {
 
-    const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, 
-      runValidataors: true
-    });
+   let patient = await Patient.findById(req.params.id);
     if(!patient) {
       return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
 
     }
+
+// Make sure that user is patient doctor
+
+    if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
+      return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータをへんこうできません．`,401));
+    }
+
     res.status(200).json({ success: true, data: patient });
   });
 
