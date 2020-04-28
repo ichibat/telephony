@@ -65,7 +65,7 @@ exports.updatePatient = asyncHandler(async (req, res, next) => {
 // Make sure that user is patient doctor
 
     if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
-      return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータをへんこうできません．`,401));
+      return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータを変更できません．`,401));
     }
 
     res.status(200).json({ success: true, data: patient });
