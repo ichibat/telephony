@@ -11,7 +11,8 @@
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護石神井",
     "primaryNs": "訪問看護ステーション石神井",
-    "primaryPh": "駅前薬局"
+    "primaryPh": "駅前薬局",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "karteNo": "22",
@@ -25,7 +26,8 @@
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護支援事業所練馬",
     "primaryNs": "訪問看護ステーションひだまり",
-    "primaryPh": "すみれ薬局"
+    "primaryPh": "すみれ薬局",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "karteNo": "102",
@@ -39,7 +41,8 @@
     "primaryDr": "酒井修",
     "primaryCM": "居宅介護支援事業所大泉学園",
     "primaryNs": "訪問看護ステーション優作",
-    "primaryPh": "ゆり薬局"
+    "primaryPh": "ゆり薬局",
+    "user": "5c8a1d5b0190b214360dc033"
   }, 
   {
     "karteNo": "112",
@@ -53,6 +56,7 @@
     "primaryDr": "大西武志",
     "primaryCM": "居宅介護支援事業所成城",
     "primaryNs": "訪問看護ステーションわかまつ",
-    "primaryPh": "なし"
+    "primaryPh": "なし",
+    "user": "5d7a514b5d2c12c7449be044"
   }
 ]

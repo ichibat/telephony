@@ -6,7 +6,8 @@
     "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d8b5de800d5ceed732ffd"
+    "patient": "5e9d8b5de800d5ceed732ffd",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "重症",
@@ -15,7 +16,8 @@
     "currentFluHistory": "ハンバーガーショップでの感染が考えられる．",
     "hospitalization": true,
     "outcome": "死亡",
-    "patient": "5e9d317acc5995c4c58c4607"
+    "patient": "5e9d317acc5995c4c58c4607",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "中等症",
@@ -24,7 +26,8 @@
     "currentFluHistory": "薬局勤務．経路不明",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d317acc5995c4c58c4609"
+    "patient": "5e9d317acc5995c4c58c4609",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "不明",
@@ -33,7 +36,8 @@
     "currentFluHistory": "家族も感染．家族内感染．",
     "hospitalization": false,
     "outcome": "不明",
-    "patient": "5e9d317acc5995c4c58c4607"
+    "patient": "5e9d317acc5995c4c58c4607",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "軽症",
@@ -42,7 +46,8 @@
     "currentFluHistory": "中国勤務3年，1月初めに帰国．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d729c6a0716cb798e51a1"
+    "patient": "5e9d729c6a0716cb798e51a1",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "中等症",
@@ -51,7 +56,8 @@
     "currentFluHistory": "病院勤務．院内感染疑い．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d317acc5995c4c58c4607"
+    "patient": "5e9d317acc5995c4c58c4607",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "不明",
@@ -60,7 +66,8 @@
     "currentFluHistory": "市中感染の疑い．スナックか．",
     "hospitalization": false,
     "outcome": "不明",
-    "patient": "5e9d317acc5995c4c58c4609"
+    "patient": "5e9d317acc5995c4c58c4609",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "軽症",
@@ -69,7 +76,8 @@
     "currentFluHistory": "重症化はしないが，風邪症状は続いている．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d729c6a0716cb798e51a1"
+    "patient": "5e9d729c6a0716cb798e51a1",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "軽症",
@@ -78,7 +86,8 @@
     "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d8b5de800d5ceed732ffd"
+    "patient": "5e9d8b5de800d5ceed732ffd",
+    "user": "5c8a1d5b0190b214360dc033"
   },
   {
     "severity": "中等症",
@@ -87,6 +96,7 @@
     "currentFluHistory": "感染経路は不明だが，いつも通勤に満員電車をつかっていた．",
     "hospitalization": false,
     "outcome": "生存",
-    "patient": "5e9d317acc5995c4c58c4607"
+    "patient": "5e9d317acc5995c4c58c4607",
+    "user": "5d7a514b5d2c12c7449be044"
   }
 ]
