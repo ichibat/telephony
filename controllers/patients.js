@@ -39,11 +39,10 @@ exports.createPatient = asyncHandler(async (req, res, next) => {
   // Check for published patient
     const publishedpatient = await Patient.findOne({ user: req.user.id });
 
-  // If the user is not an adminm they can only add one patient
+  // If the user is not an admin, they can only add one patient
     if(publishedpatient && req.user.role !== 'admin') {
       return next(new ErrorResponse(`このユーザーID:${req.user.id}はすでに患者さんを登録しています．`, 400));
     }
-    
 
     const patient = await Patient.create(req.body);
 
@@ -62,11 +61,16 @@ exports.updatePatient = asyncHandler(async (req, res, next) => {
 
     }
 
-// Make sure that user is patient doctor
+// Make sure that user is a patient doctor
 
     if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
       return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータを変更できません．`,401));
     }
+
+    patient = await Patient.findOneAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
 
     res.status(200).json({ success: true, data: patient });
   });
@@ -83,6 +87,12 @@ exports.deletePatient = asyncHandler(async (req, res, next) => {
 
     }
 
+    // Make sure that user is a patient doctor
+
+    if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
+      return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータを削除できません．`,401));
+    }
+
     patient.remove();
 
     res.status(200).json({ success: true, data: {} });
@@ -96,9 +106,16 @@ exports.deletePatient = asyncHandler(async (req, res, next) => {
 
 exports.patientPhotoUpload = asyncHandler(async (req, res, next) => {
   const patient = await Patient.findById(req.params.id);
+
   if(!patient) {
     return next(new ErrorResponse(`idが${req.params.id}の患者さんをみつけることはできませんでした．`,404));
 
+  }
+
+  // Make sure that user is a patient doctor
+
+  if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
+    return next(new ErrorResponse(`ユーザーIDが${req.params.id}の方はこのデータを変更できません．`,401));
   }
 
   if(!req.files) {
