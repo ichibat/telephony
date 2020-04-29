@@ -49,6 +49,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
 
 exports.addCourse = asyncHandler(async (req, res, next) => {
   req.body.patient = req.params.patientId;
+  req.body.user = req.user.id;
 
   const patient = await Patient.findById(req.params.patientId);
 
@@ -56,6 +57,12 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`No patient with the id of ${req.params.patientId}`),
     404
     );
+  }
+
+  // Make sure that user is a patient doctor
+
+  if(patient.user.toString() !== req.user.id && req.user.role !=='admin') {
+    return next(new ErrorResponse(`ユーザーID:${req.user.id}の方は患者ID:${patient._id}のデータを変更できません．`,401));
   }
 
   const course = await Course.create(req.body);
@@ -79,6 +86,12 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`No course with the id of ${req.params.id}`),
     404
     );
+  }
+
+  // Make sure that user is a course owner
+
+  if(course.user.toString() !== req.user.id && req.user.role !=='admin') {
+    return next(new ErrorResponse(`ユーザーID:${req.user.id}の方はコースID:${course._id}のデータを変更できません．`,401));
   }
 
   course = await Course.findByIdAndUpdate(req.params.id, req.body, {
@@ -106,6 +119,12 @@ exports.deleteCourse = asyncHandler(async (req, res, next) => {
     );
   }
 
+    // Make sure that user is a course owner
+
+    if(course.user.toString() !== req.user.id && req.user.role !=='admin') {
+      return next(new ErrorResponse(`ユーザーID:${req.user.id}の方はコースID:${course._id}のデータを削除できません．`,401));
+    }
+  
   await course.remove();
 
   res.status(200).json({
