@@ -1,6 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-
+const sendEmail = require('../utils/sendEmail');
 const User = require('../models/User');
 
 //  @desc   Register user
@@ -81,9 +81,35 @@ if(!user) {
 }
 
 // Get reset token
-const resetToken = user.getResetPasswordToken();
-
+  const resetToken = user.getResetPasswordToken();
+  
   await user.save({ validateBeforeSave: false });
+
+  // Create reset url
+  const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`;
+
+  const message = `あなたかあなた以外の誰かがパスワードのリセットを要求したので，あなたはこのEメールを受け取っています．PUTリクエストを以下のURLに送ってください．\n\n ${resetUrl}`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Password reset token',
+      message
+    });
+    return res.status(200).json({
+      success: true,
+      data: 'Eメールが送られました．'
+    });
+  } catch (err) {
+    console.log(err);
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return(next(new ErrorResponse( 'Eメールを送ることができません．',500 )))
+  }
+
   
   res.status(200).json({
     success: true,
