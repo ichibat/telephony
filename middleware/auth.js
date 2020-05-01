@@ -18,7 +18,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
   // Make sure token exists
   if(!token) {
-    return next(new ErrorResponse('この機能にはアクセスできません．', 401));
+    return next(new ErrorResponse('この機能にはアクセスできませんよ．', 401));
   }
 
   try {
@@ -31,7 +31,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
     next();
   } catch (err) {
-  return next(new ErrorResponse('この機能にはアクセスできません．', 401));
+  return next(new ErrorResponse('この機能にはアクセスできませんが．', 401));
   }
 });
 
