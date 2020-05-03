@@ -1,7 +1,8 @@
 const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
 const Course = require('../models/Course');
 const Patient = require('../models/Patient');
-const asyncHandler = require('../middleware/async');
+
 
 //  @desc   Get courses
 //  @route  Get /api/v1/courses

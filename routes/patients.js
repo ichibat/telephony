@@ -13,6 +13,7 @@ const Patient = require('../models/Patient');
 
 // Include other resource routers
 const courseRouter = require('./courses');
+const reviewRouter = require('./reviews');
 
 const router = express.Router(); 
 
@@ -24,6 +25,7 @@ const { protect, authorize } = require('../middleware/auth');
 
 // Re-route into other resource routers
 router.use('/:patientId/courses', courseRouter);
+router.use('/:patientId/reviews', reviewRouter);
 
 router.route('/:id/photo').put(protect, authorize('publisher', 'admin'), patientPhotoUpload);
 

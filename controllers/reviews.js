@@ -1,0 +1,42 @@
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const Review = require('../models/Review');
+const Patient = require('../models/Patient');
+
+
+//  @desc   Get reviews
+//  @route  Get /api/v1/reviews
+//  @route  Get /api/v1/patients/:patientId/reviews
+//  @access Public
+
+exports.getReviews = asyncHandler(async (req, res, next) => {
+  if(req.params.patientId) {
+    const reviews = await Review.find({patient: req.params.patientId});
+    return res.status(200).json({
+      success: true,
+      count: reviews.length,
+      data: reviews
+    });
+  } else {
+    res.status(200).json(res.advancedResults);
+  }
+});
+
+
+//  @desc   Get single review
+//  @route  Get /api/v1/reviews/:id
+//  @access Public
+
+exports.getReview = asyncHandler(async (req, res, next) => {
+  const review = await Review.findById(req.params.id).populate({
+    path: 'patient',
+    select: 'karteNo, ptLastName, ptFirstName'
+  });
+
+  if (!review) {
+    return next(new ErrorResponse(`ID:${req.params.id}のレビューはみつかりませんでした．`,404));
+  }
+  res.status(200).json({
+    success: true,
+    data: review})
+});
