@@ -37,4 +37,37 @@ const ReviewSchema = new mongoose.Schema({
 // Prevent user from submitting more than on review per patient
 ReviewSchema.index({ patient: 1, user: 1 }, { unique: true });
 
+// Static method to get avg rating and save
+ReviewSchema.statics.getAverageRating = async function (patientId) {
+  
+  const obj = await this.aggregate([
+    {
+      $match: { patient: patientId }
+    },
+    {
+      $group: {
+        _id: '$patient',
+        averageRating: { $avg: '$rating' }
+      }
+    }
+  ]);
+  try {
+    await this.model('Patient').findByIdAndUpdate(patientId, {
+      averageRating: obj[0].averageRating
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// call getAverageRating after save
+  ReviewSchema.post('save', function () {
+    this.constructor.getAverageRating(this.patient);
+  });
+
+// call getAverageRating before remove
+  ReviewSchema.pre('remove', function () {
+  this.constructor.getAverageRating(this.patient);
+  });
+
 module.exports = mongoose.model('Review', ReviewSchema);

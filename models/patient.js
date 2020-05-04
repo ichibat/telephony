@@ -88,6 +88,11 @@ const PatientSchema = new mongoose.Schema({
     trim: true,
     maxlength: [50, '名前が長すぎます．']
   },
+  averageRating: {
+    type: Number,
+    min: [1, 'Rating must be at least 1'],
+    max: [10, 'Rating must can not be more than 10']
+  },
   photo: {
     type: String,
     default: 'no-photo.jpg'

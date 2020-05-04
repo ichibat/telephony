@@ -63,3 +63,57 @@ exports.addReview = asyncHandler(async (req, res, next) => {
     success: true,
     data: review})
 });
+
+
+//  @desc   Update review
+//  @route  PUT /api/v1//reviews/:id
+//  @access Private
+
+exports.updateReview = asyncHandler(async (req, res, next) => {
+  
+  let review = await Review.findById(req.params.id);
+
+  if (!review) {
+    return next(new ErrorResponse(`ID:${req.params.id}のレビューはみつかりませんでした．`),404
+    )
+  }
+
+  // Make sure review belongs to user or user is admin
+  if (review.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(new ErrorResponse(`ID:${req.params.id}のレビューを変更する権限がありません．`),404)
+  }
+
+  review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  });
+
+  res.status(200).json({
+    success: true,
+    data: review})
+});
+
+//  @desc   Delete review
+//  @route  DELETE /api/v1//reviews/:id
+//  @access Private
+
+exports.deleteReview = asyncHandler(async (req, res, next) => {
+  
+  const review = await Review.findById(req.params.id);
+
+  if (!review) {
+    return next(new ErrorResponse(`ID:${req.params.id}のレビューはみつかりませんでした．`),404
+    )
+  }
+
+  // Make sure review belongs to user or user is admin
+  if (review.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(new ErrorResponse(`ID:${req.params.id}のレビューを変更する権限がありません．`),404)
+  }
+
+  await review.remove();
+
+  res.status(200).json({
+    success: true,
+    data: {}})
+});
