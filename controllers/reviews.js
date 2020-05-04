@@ -40,3 +40,26 @@ exports.getReview = asyncHandler(async (req, res, next) => {
     success: true,
     data: review})
 });
+
+
+//  @desc   Add review
+//  @route  Get /api/v1/patient/:patientId/reviews
+//  @access Private
+
+exports.addReview = asyncHandler(async (req, res, next) => {
+  req.body.patient = req.params.patientId;
+  req.body.user = req.user.id;
+ 
+  const patient = await Patient.findById(req.params.patientId);
+
+  if (!patient) {
+    return next(new ErrorResponse(`ID:${req.params.patientId}の患者さんはみつかりませんでした．`),404
+    )
+  }
+
+  const review = await Review.create(req.body);
+
+  res.status(201).json({
+    success: true,
+    data: review})
+});

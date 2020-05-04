@@ -33,4 +33,8 @@ const ReviewSchema = new mongoose.Schema({
     required: true
   }
 });
+
+// Prevent user from submitting more than on review per patient
+ReviewSchema.index({ patient: 1, user: 1 }, { unique: true });
+
 module.exports = mongoose.model('Review', ReviewSchema);
