@@ -7,10 +7,12 @@ const User = require('../models/User');
 exports.protect = asyncHandler(async (req, res, next) => {
   let token; 
 
-  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+// Set token from Bear token in header
     token = req.headers.authorization.split(' ')[1];
   }
 
+// Set token from cookie
   // else if(req.cookies.token) {
   //   token = req.cookies.token
   // }
@@ -18,20 +20,19 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
   // Make sure token exists
   if(!token) {
-    return next(new ErrorResponse('この機能にはアクセスできませんよ．', 401));
+    return next(new ErrorResponse('この機能にはアクセスできません．', 401));
   }
 
   try {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    console.log(decoded);
+    
 
     req.user = await User.findById(decoded.id);
 
     next();
   } catch (err) {
-  return next(new ErrorResponse('この機能にはアクセスできませんが．', 401));
+  return next(new ErrorResponse('この機能にはアクセスできません．', 401));
   }
 });
 
