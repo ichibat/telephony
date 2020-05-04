@@ -11,7 +11,7 @@ const errorHandler = (err, req, res, next) => {
 
   // Mongoose bad objectId
   if(err.name === 'CastError') {
-    const message = `idが${err.value}のデータをみつけることはできませんでした．`;
+    const message = `データをみつけることはできませんでした．`;
     error = new ErrorResponse(message, 404);
   }
 
